@@ -1,0 +1,9 @@
+extends layout.pug
+block content
+	form(method="post" action="/board/wr")
+		.border.rounded.p-3
+			input.form-control.m-2(name="title")
+			input.form-control.m-2(name="writer")
+			textarea.form-control.m-2(name="comment")
+			button.btn.btn-primary 저장
+			button.btn.btn-danger(type="reset") 다시작성

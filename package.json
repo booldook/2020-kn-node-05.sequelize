@@ -13,6 +13,9 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "mysql2": "^2.1.0",
+    "pug": "2.0.0-beta11",
+    "rotating-file-stream": "^2.0.2",
+    "sequelize": "^5.21.3"
   }
 }

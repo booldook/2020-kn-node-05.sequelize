@@ -1,10 +1,29 @@
 extends layout.pug
 block content
+	.p-2.border
+		form(action="/board/update", method="post")
+			input(type="hidden" name="_method" value="put")
+			input(type="hidden" name="id" id="id")
+			.p-2.form-inline
+				input.form-control.mr-2(type="text" id="title" name="title")
+				input.form-control.mr-2(type="text" id="writer" name="writer")
+				input.form-control.mr-2(type="text" id="comment" name="comment")
+				button.btn.btn-primary 수정
 	table.table.table-bordered
 		thead.thead-dark
 			tr
 				th 번호
 				th 제목
 				th 작성자
-				th 조회수
+				th 작성일
+				th 관리
 		tbody
+			each v in data
+				tr
+					td= v.id
+					td= v.title
+					td= v.writer
+					td= v.createdAt
+					td
+						button.btn.btn-sm.btn-danger(onclick=`location.href='/board/delete/${v.id}';`) 삭제
+						button.btn.btn-sm.btn-success(onclick=`onChg(${v.id})`) 수정

@@ -32,6 +32,10 @@ Object.keys(db).forEach(modelName => {
 db.Member.hasMany(db.Post);
 db.Post.belongsTo(db.Member);
 
+// 다 대 다
+db.Post.belongsToMany(db.Hash, {through: 'post_hash'});
+db.Hash.belongsToMany(db.Post, {through: 'post_hash'});
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

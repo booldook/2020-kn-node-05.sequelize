@@ -28,6 +28,10 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+// 1 대 다
+db.Member.hasMany(db.Post);
+db.Post.belongsTo(db.Member);
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

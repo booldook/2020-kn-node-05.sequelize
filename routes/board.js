@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var datetime = require('date-time');
 var {Board} = require('../models');
+var {Board} = require('../models');
+
 
 /* GET users listing. */
 router.get(['/', '/:id'], async (req, res, next) => {
@@ -50,8 +52,38 @@ router.post('/wr', async (req, res, next) => {
   res.redirect("/board");
 });
 
-router.put('/update', (req, res) => {
-  res.send("왔어요~");
+router.put('/update', async (req, res) => {
+  try {
+    const data = await Board.update({
+      title: req.body.title,
+      writer: req.body.writer,
+      comment: req.body.comment
+    }, {
+      where: {
+        id: req.body.id
+      }
+    });
+    if(data[0]) res.redirect("/board");
+  }
+  catch(err) {
+    next(err);
+  }
+  /*
+  Board.update({
+    title: req.body.title,
+    writer: req.body.writer,
+    comment: req.body.comment
+  }, {
+    where: {
+      id: req.body.id
+    }
+  }).then(function(data){
+    if(data[0]) res.redirect("/board");
+  }
+  ).catch(function(err) {
+    next(err);
+  });
+  */
 })
 
 module.exports = router;

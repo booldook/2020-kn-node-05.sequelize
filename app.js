@@ -13,7 +13,8 @@ var boardRouter = require('./routes/board');
 
 var app = express();
 var {sequelize} = require('./models');
-//sequelize.sync({force: false});
+sequelize.sync({force: true});
+
 
 /* logger */
 var logDirectory = path.join(__dirname, 'log');
@@ -27,6 +28,7 @@ var accessLogStream = rfs.createStream('access.log', {
 app.use(logger('combined', { stream: accessLogStream }))
 
 // view engine setup
+app.locals.pretty = true;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
